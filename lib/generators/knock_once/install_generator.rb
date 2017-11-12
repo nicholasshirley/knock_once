@@ -15,5 +15,12 @@ module KnockOnce
         migration_template("create_knock_once_users.rb.erb", "db/migrate/create_knock_once_users.rb")
       end
     end
+
+    private
+
+    # Use to assign migration time otherwise generator will error
+    def self.next_migration_number(dir)
+      Time.now.utc.strftime("%Y%m%d%H%M%S")
+    end
   end
 end
