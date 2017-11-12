@@ -5,13 +5,6 @@ knock_once is a user auth gem built on top of [knock](https://github.com/nsarno/
 
 Though it is not released in this gem, it is planned to have additional functionality available through additional gems (e.g. confirming users, lockable accounts...). The goal here is to provide much of the functionality available in other packages, such as [devise](https://github.com/plataformatec/devise) and [devise_token_auth](https://github.com/lynndylanhurley/devise_token_auth), using JWT.
 
-## Usage
-Mount the gem in our `routes.rb` file:
-
-```ruby
-mount KnockOnce::Engine, at: '/auth'
-```
-
 ## Installation
 Add this line to your application's Gemfile:
 
@@ -27,6 +20,11 @@ $ bundle
 Or install it yourself as:
 ```bash
 $ gem install knock_once
+```
+
+Then run generators to generate routes, migration and models
+```
+rails g knock_once:install
 ```
 
 ## Contributing
