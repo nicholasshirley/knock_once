@@ -16,6 +16,10 @@ module KnockOnce
       end
     end
 
+    def create_password_model
+      copy_file('passwords_model.rb', 'app/models/password.rb')
+    end
+
     private
 
     # Use to assign migration time otherwise generator will error

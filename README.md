@@ -22,6 +22,12 @@ Or install it yourself as:
 $ gem install knock_once
 ```
 
+Mount the gem in our `routes.rb` file:
+
+```ruby
+mount KnockOnce::Engine, at: '/auth'
+```
+
 Then run generators to generate routes, migration and models
 ```
 rails g knock_once:install
