@@ -1,6 +1,6 @@
 module KnockOnce
   class User < ApplicationRecord
-     # these allow passing non-DB params for different situations
+    # these allow passing non-DB params for different situations
     attr_accessor :current_password
     attr_accessor :token
 
@@ -28,13 +28,11 @@ module KnockOnce
 
 
 
-    # Send additional user info as payload for Vue
+    # Send additional user info as payload for front end
     def to_token_payload
       {
         sub: id,
-        email: email,
-        user_name: user_name,
-        image: image
+        email: email
       }
     end
   end
