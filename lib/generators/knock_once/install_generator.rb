@@ -17,7 +17,7 @@ module KnockOnce
     end
 
     def create_password_model
-      copy_file('passwords_model.rb', 'app/models/password.rb')
+      copy_file('password_model.rb', 'app/models/password.rb')
     end
 
     private
