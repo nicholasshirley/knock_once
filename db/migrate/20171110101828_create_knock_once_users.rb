@@ -1,6 +1,6 @@
 class CreateKnockOnceUsers < ActiveRecord::Migration[5.1]
   def change
-    create_table :knock_once_users do |t|
+    create_table :users do |t|
       # Required
       t.string :email
       t.string :password_digest
