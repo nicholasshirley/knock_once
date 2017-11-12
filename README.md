@@ -9,7 +9,7 @@ Though it is not released in this gem, it is planned to have additional function
 Mount the gem in our `routes.rb` file:
 
 ```ruby
-mount KnockOnce::Engine, at: '/user'
+mount KnockOnce::Engine, at: '/auth'
 ```
 
 ## Installation
