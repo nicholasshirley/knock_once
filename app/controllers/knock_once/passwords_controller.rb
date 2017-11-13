@@ -1,4 +1,4 @@
-require_dependency KnockOnce::Engine.root.join('app', 'controllers', 'knock_once', 'application_controller').to_s
+require_dependency "knock_once/application_controller"
 
 module KnockOnce
   class PasswordsController < ::ApplicationController
