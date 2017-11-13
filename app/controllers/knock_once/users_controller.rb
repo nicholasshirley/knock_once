@@ -1,5 +1,3 @@
-require_dependency "knock_once/application_controller"
-
 module KnockOnce
   class UsersController < ::ApplicationController
     before_action :authenticate_user, except: [:create]
