@@ -10,10 +10,6 @@ module KnockOnce
 
     valid_email_regex = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
-    validates :user_name,
-      presence: true,
-      length: { maximum: 25},
-      uniqueness: { case_sensitive: false }
     validates :email,
       presence: true,
       length: { maximum: 255 },
