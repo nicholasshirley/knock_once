@@ -1,4 +1,4 @@
-
+module KnockOnce
   class UsersController < ::ApplicationController
     before_action :authenticate_user, except: [:create]
     include ActiveModel::SecurePassword
@@ -48,4 +48,4 @@
       params.permit(:user, :user_name, :email, :current_password, :password, :password_confirmation)
     end
   end
-
+end
