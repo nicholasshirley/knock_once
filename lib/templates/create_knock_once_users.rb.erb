@@ -1,6 +1,6 @@
 class CreateKnockOnceUsers < ActiveRecord::Migration<%= "[#{Rails::VERSION::STRING[0..2]}]" if Rails::VERSION::MAJOR > 4 %>
   def change
-    create_table :knock_once_users do |t|
+    create_table :users do |t|
       # Required
       t.string :email
       t.string :password_digest
@@ -13,6 +13,6 @@ class CreateKnockOnceUsers < ActiveRecord::Migration<%= "[#{Rails::VERSION::STRI
       t.timestamps
     end
 
-    add_index :knock_once_users, :email, unique: true
+    add_index :users, :email, unique: true
   end
 end

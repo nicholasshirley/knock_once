@@ -1,5 +1,8 @@
 module KnockOnce
   class User < ApplicationRecord
+    # Explicitly set the table name so users can use non-namespaced table
+    self.table_name = 'users'
+
     # these allow passing non-DB params for different situations
     attr_accessor :current_password
     attr_accessor :token
