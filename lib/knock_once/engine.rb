@@ -1,3 +1,5 @@
+require 'knock'
+
 module KnockOnce
   class Engine < ::Rails::Engine
     isolate_namespace KnockOnce

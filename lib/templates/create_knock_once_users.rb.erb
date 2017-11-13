@@ -1,0 +1,18 @@
+class CreateKnockOnceUsers < ActiveRecord::Migration<%= "[#{Rails::VERSION::STRING[0..2]}]" if Rails::VERSION::MAJOR > 4 %>
+  def change
+    create_table :users do |t|
+      # Required
+      t.string :email
+      t.string :password_digest
+      t.string :password_reset_token
+      t.datetime :password_token_expiry
+
+      # Add your custom user fields are required
+      # TODO add whitelist instructions here
+
+      t.timestamps
+    end
+
+    add_index :users, :email, unique: true
+  end
+end
