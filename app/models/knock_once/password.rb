@@ -14,7 +14,7 @@ module KnockOnce
     end
 
     def self.email_reset(email)
-      PasswordResetMailer.reset_password(@user, @token).deliver_now
+      PasswordResetMailer.password_reset(@user, @token).deliver_now
     end
   end
 end
