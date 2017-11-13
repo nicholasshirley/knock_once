@@ -1,5 +1,5 @@
 KnockOnce::Engine.routes.draw do
-  post 'user_token' => 'user_token#create'
+  post '/user_token', to: 'user_token#create'
 
   resource :users
 

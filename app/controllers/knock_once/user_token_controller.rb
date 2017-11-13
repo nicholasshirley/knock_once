@@ -1,5 +1,5 @@
 module KnockOnce
-  require Knock::AuthTokenController
-  class UserTokenController < Knock::AuthTokenController
+  require Knock
+  class UserTokenController < Knock::Controllers::AuthTokenController
   end
 end
