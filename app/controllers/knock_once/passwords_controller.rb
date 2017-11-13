@@ -1,7 +1,7 @@
 require_dependency "knock_once/application_controller"
 
 module KnockOnce
-  class PasswordsController < ApplicationController
+  class PasswordsController < ::ApplicationController
     before_action :authenticate_user, except: [:create, :edit, :validate]
     include ActiveModel::SecurePassword
 
