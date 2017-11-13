@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    knock_once (0.1.28)
+    knock_once (0.1.302)
       knock
       rails (~> 5.1.4)
 
