@@ -1,4 +1,7 @@
+
+require_dependency 'Knock/AuthTokenController'
+
 module KnockOnce
-  class UserTokenController < Knock::Controllers::AuthTokenController
+  class UserTokenController < Knock::AuthTokenController
   end
 end
