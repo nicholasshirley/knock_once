@@ -33,8 +33,11 @@ Then run generators to generate migration
 rails g knock_once:install
 ```
 
+## Current state
+The gem has been extracted from a test project and as such has very little configurability (but it works at least within those parameters). The primary next steps are to add user configuration options, additional documentation, add tests for current functionality and improve the generators.
+
 ## Contributing
-TODO
+Pull requests are very welcome.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
