@@ -11,7 +11,7 @@ module KnockOnce
     end
 
     def update
-      @user = current_user
+      @user = User.find_by_id(current_user.id)
       byebug
       if @user.authenticate(params[:current_password])
         # ActionController::Parameters.action_on_unpermitted_parameters = :raise
