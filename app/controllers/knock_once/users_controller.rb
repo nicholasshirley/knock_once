@@ -14,7 +14,7 @@ module KnockOnce
       @user = current_user
       if @user.authenticate(params[:current_password])
         # ActionController::Parameters.action_on_unpermitted_parameters = :raise
-        if @user.updated(user_params).changes_applied
+        if @user.update(user_params).changes_applied
           render json: {
             user: @user,
             message: 'Your profile has been updated!'
