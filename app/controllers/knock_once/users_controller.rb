@@ -15,7 +15,7 @@ module KnockOnce
       byebug
       if @user.authenticate(params[:current_password])
         # ActionController::Parameters.action_on_unpermitted_parameters = :raise
-        if @user.update(user_params)
+        if @user.update(user_params) && @user = current_user
           byebug
           render json: {
             user: @user,
