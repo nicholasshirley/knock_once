@@ -20,7 +20,7 @@ module KnockOnce
             message: 'Your profile has been updated!'
           }
         else
-          @user.errors.push('There was a problem, please re-enter your data and try again.')
+          @user.errors.add(:base, :bad_parameter, message: 'There was a problem, please re-enter your data and try again.')
           render json: @user.errors.full_messages, status: :unprocessable_entity
         end
       else
