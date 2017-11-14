@@ -12,17 +12,15 @@ module KnockOnce
 
     def update
       @user = User.find_by_id(current_user.id)
-      byebug
       if @user.authenticate(params[:current_password])
         # ActionController::Parameters.action_on_unpermitted_parameters = :raise
         if @user.update(user_params) && @user == current_user
-          byebug
           render json: {
             user: @user,
             message: 'Your profile has been updated!'
           }
         else
-          render json: @user.errors.full_messages, status: :unprocessable_entity
+          render json: @user.errors.full_messages || 'There was a problem, please re-enter your data and try again.', status: :unprocessable_entity
         end
       else
         render status: :unprocessable_entity, json: ['Current password is incorrect']
