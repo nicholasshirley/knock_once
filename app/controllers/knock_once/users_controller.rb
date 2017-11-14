@@ -13,7 +13,7 @@ module KnockOnce
     def update
       @user = current_user
       if @user.authenticate(params[:current_password])
-        if @user.save(user_params)
+        if @user.save!(user_params)
           render json: {
             user: @user,
             message: 'Your profile has been updated!'
@@ -47,7 +47,7 @@ module KnockOnce
     private
 
     def user_params
-      params.permit(:user, :email, :current_password, :password, :password_confirmation)
+      params.require(:user).permit(:email, :current_password, :password, :password_confirmation)
     end
   end
 end
