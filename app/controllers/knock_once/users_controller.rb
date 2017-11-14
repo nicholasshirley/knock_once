@@ -20,7 +20,7 @@ module KnockOnce
             message: 'Your profile has been updated!'
           }
         else
-          render json: @user.errors.full_messages || 'There was a problem, please re-enter your data and try again.', status: :unprocessable_entity
+          render 'There was a problem, please re-enter your data and try again.'.to_json unless @user.errors.full_messages.length > 0, status: :unprocessable_entity
         end
       else
         render status: :unprocessable_entity, json: ['Current password is incorrect']
