@@ -49,7 +49,7 @@ module KnockOnce
     private
 
     def user_params
-      params.permit(:user, :email, :current_password, :password, :password_confirmation)
+      params.permit(:user, :email, :current_password, :password, :password_confirmation, custom_attributes: [])
     end
   end
 end
