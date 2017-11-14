@@ -13,6 +13,7 @@ module KnockOnce
     def update
       @user = current_user
       if @user.authenticate(params[:current_password])
+        ActionController::Parameters.action_on_unpermitted_parameters = :raise
         if @user.save!(user_params)
           render json: {
             user: @user,
@@ -47,7 +48,7 @@ module KnockOnce
     private
 
     def user_params
-      params.require(:user).permit(:email, :current_password, :password, :password_confirmation)
+      params.permit(:user, :email, :current_password, :password, :password_confirmation)
     end
   end
 end
