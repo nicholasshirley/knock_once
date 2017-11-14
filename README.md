@@ -33,6 +33,20 @@ Then run generators to generate migration
 rails g knock_once:install
 ```
 
+## Returning user info
+By default `knock_once` will only return the user's id and email address when user information is encoded in the token (on login and create token). To include additional information add the method `to_token_payload` to the `user.rb` model that was created by the generator and define the values you would like to return. Example:
+
+```ruby
+def to_token_payload
+  {
+    sub: id,
+    email: email,
+    user_name: user_name,
+    image: image
+  }
+end
+```
+
 ## Current state
 The gem has been extracted from a test project and as such has very little configurability (but it works at least within those parameters). The primary next steps are to add user configuration options, additional documentation, add tests for current functionality and improve the generators.
 
