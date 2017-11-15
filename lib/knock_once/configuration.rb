@@ -34,7 +34,7 @@ module KnockOnce
       @user_params = [:email, :current_password, :password, :password_confirmation]
     end
 
-    def user_params
+    def self.user_params
       @user_params
     end
   end
