@@ -53,7 +53,7 @@ module KnockOnce
 
     def custom_params(*args)
       args.each do |param|
-        user_params.params.permit.merge(param)
+        user_params.merge(param)
       end
     end
   end
