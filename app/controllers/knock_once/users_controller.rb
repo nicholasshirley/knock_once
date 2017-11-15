@@ -13,6 +13,7 @@ module KnockOnce
     def update
       @user = User.find_by_id(current_user.id)
       if @user.authenticate(params[:current_password])
+        byebug
         if @user.update(user_params) && @user == current_user
           render json: {
             user: @user,
