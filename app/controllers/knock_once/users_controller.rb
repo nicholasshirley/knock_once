@@ -51,8 +51,8 @@ module KnockOnce
       params.permit(:user, :email, :current_password, :password, :password_confirmation)
     end
 
-    def custom_parms(params, *args)
-      params.each do |param|
+    def custom_parms(*args)
+      args.each do |param|
         user_params.params.permit.merge(param)
       end
     end
