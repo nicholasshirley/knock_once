@@ -13,12 +13,13 @@ module KnockOnce
     def update
       @user = User.find_by_id(current_user.id)
       if @user.authenticate(params[:current_password])
-        if @user.update(user_params)
+        if @user.update(user_params) && @user == current_user
           render json: {
             user: @user,
             message: 'Your profile has been updated!'
           }
         else
+          @user.errors.add(:base, :bad_parameter, message: 'There was a problem, please re-enter your data and try again.')
           render json: @user.errors.full_messages, status: :unprocessable_entity
         end
       else
