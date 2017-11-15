@@ -13,7 +13,6 @@ module KnockOnce
     def update
       @user = User.find_by_id(current_user.id)
       if @user.authenticate(params[:current_password])
-        byebug
         if @user.update(user_params) && @user == current_user
           render json: {
             user: @user,
@@ -49,7 +48,7 @@ module KnockOnce
     private
 
     def user_params
-      params.permit(:user, :email, :current_password, :password, :password_confirmation, custom_attributes: [])
+      params.permit(:user, :email, :current_password, :password, :password_confirmation)
     end
   end
 end
