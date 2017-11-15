@@ -28,21 +28,21 @@ Mount the gem in our `routes.rb` file:
 mount KnockOnce::Engine, at: '/auth'
 ```
 
-Then run generators to generate migration
+Then run generators
 ```
 rails g knock_once:install
 ```
 
 ## Assumptions
-knock_once requires that you have a model called user (see generator output). In the future, this will be made configurable, but at the moment it's the ony possibility.
+knock_once requires that you have a model called user (see generator output). In the future, this will be made configurable, but at the moment it's the only possibility.
+
+## Setting up
+After you run the install generator, you will have a user model, user migration and an initialization file. You only need to run `rails db:migrate`  to get started, but realistically your user model will have more informatino than just an email. Add your additional user fields to the migration (and any validations etc you need for them on the model) and then whitelist the required params in the initializer.
 
 ## User
 
-### Whitelisting params
-It is not necessary to whitelist any user params, they are read automatically from your user's table column names.
-
 ### Returning user info
-By default `knock_once` will only return the user's id and email address when user information is encoded in the token (on login and create token). To include additional information add the method `to_token_payload` to the `user.rb` model that was created by the generator and define the values you would like to return. Example:
+By default `knock_once` will only return the user's id and email address when user information is encoded in the token (on login and create token). To overwrite this add the method `to_token_payload` to the `user.rb` model that was created by the generator and define the values you would like to return. Example:
 
 ```ruby
 def to_token_payload
