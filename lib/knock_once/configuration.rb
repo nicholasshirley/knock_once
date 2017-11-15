@@ -7,15 +7,12 @@ module KnockOnce
     end
   end
 
+  class << self
+    attr_accessor :configuration
+  end
+
   def self.configure
     @configuration ||= Configuration.new
-  end
-
-  def self.configuration=(config)
-    @configuration = config
-  end
-
-  def self.configure
     yield configuration
   end
 end
