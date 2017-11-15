@@ -48,7 +48,7 @@ module KnockOnce
     private
 
     def user_params
-      params.permit(:email, :current_password, :password, :password_confirmation)
+      params.permit(KnockOnce::Configuration.user_pararms.each { |param| param })
     end
   end
 end
