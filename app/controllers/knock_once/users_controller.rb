@@ -47,7 +47,7 @@ module KnockOnce
     private
 
     def user_params
-      params.permit(::User.columns.map(&:name), :email, :current_password, :password, :password_confirmation)
+      params.permit(::User.columns.map(&:name), :current_password, :password, :password_confirmation)
     end
   end
 end
