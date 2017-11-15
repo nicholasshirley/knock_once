@@ -45,8 +45,6 @@ module KnockOnce
       end
     end
 
-    private
-
     def user_params(*args)
       allowed_params = [:user, :email, :current_password, :password, :password_confirmation]
       allowed_params << args
