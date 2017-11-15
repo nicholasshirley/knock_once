@@ -33,7 +33,15 @@ Then run generators to generate migration
 rails g knock_once:install
 ```
 
-## Returning user info
+## Assumptions
+knock_once requires that you have a model called user (see generator output). In the future, this will be made configurable, but at the moment it's the ony possibility.
+
+## User
+
+### Whitelisting params
+It is not necessary to whitelist any user params, they are read automatically from your user's table column names.
+
+### Returning user info
 By default `knock_once` will only return the user's id and email address when user information is encoded in the token (on login and create token). To include additional information add the method `to_token_payload` to the `user.rb` model that was created by the generator and define the values you would like to return. Example:
 
 ```ruby
