@@ -47,8 +47,7 @@ module KnockOnce
     private
 
     def user_params
-      unpermitted_fields = ['id', 'password_digest', 'password_reset_token', 'password_token_expiry', 'created_at', 'updated_at']
-      params.permit(::User.columns.map(&:name).delete_if { |x| x.match(unpermitted_fields.map) }, :current_password, :password, :password_confirmation)
+      params.permit(:email, :current_password, :password, :password_confirmation)
     end
   end
 end
