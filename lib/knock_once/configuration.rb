@@ -28,7 +28,7 @@ module KnockOnce
   end
 
   class Configuration
-    attr_accessor :user_params
+    mattr_accessor :user_params
 
     def initialize
       @user_params = [:email, :current_password, :password, :password_confirmation]
