@@ -48,7 +48,7 @@ module KnockOnce
     private
 
     def user_params
-      params.permit(Configuration.user_params.each { |param| param })
+      params.permit(KnockOnce.configuration.user_params)
     end
   end
 end
