@@ -35,7 +35,7 @@ module KnockOnce
     end
 
     def self.user_params
-      @user_params
+      user_params
     end
   end
 end
