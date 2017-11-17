@@ -205,6 +205,7 @@ Current list of items that I would like to add to the gem
 * Initializer + code changes to customize password reset token validity period (default is 1 hour)
 * Initializer + code changes to customize what is required on delete (default is a valid token only)
 * Tie forgot password mail template to initializers so they will generate a sufficiently generic template with the correct reset strategy which can easily be edited by users
+* Hook into knock initializer so that users can customize those options from the knock_once initializer file
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
