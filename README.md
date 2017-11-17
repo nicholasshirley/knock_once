@@ -197,12 +197,14 @@ Pull requests are very welcome.
 
 Current list of items that I would like to add to the gem
 
-* Tests! Currently there is very minimal testing.
+* Tests! There are currently 0 tests. It's bad, I know. Please don't report me to the testing police.
+* Test documentation and tear down/init generator so that anyone doing testing is working with the same dummy app data and that data mirrors what is produced by the install generators.
 * Ability to change user model to any name
 * Initializer that lets user app decide when to require password for on update. Currently the default is for any changes to the user and to change password
-* Initializer to let users set password recovery method (e.g. token vs pin), length and expiry
-* Initializer to customize password reset token validity period (default is 1 hour)
-* Initializer to customize what is required on delete (default is a valid token)
+* Initializer + code changes to let users set password recovery method (e.g. token vs pin), length and expiry
+* Initializer + code changes to customize password reset token validity period (default is 1 hour)
+* Initializer + code changes to customize what is required on delete (default is a valid token only)
+* Tie forgot password mail template to initializers so they will generate a sufficiently generic template with the correct reset strategy which can easily be edited by users
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
