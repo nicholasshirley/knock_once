@@ -8,7 +8,7 @@ module KnockOnce
 
     def initialize
       @user_params = :user, :email, :current_password, :password, :password_confirmation
-      @passwords_token_expiry = 1.hour.from_now
+      @password_token_expiry = 1.hour.from_now
       @reset_token_length = 18
     end
   end
