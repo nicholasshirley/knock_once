@@ -10,11 +10,8 @@ module KnockOnce
       # if valid user
       if @user
         # generate a new token and save
-        byebug
         Password.save_token_and_expiry(@user)
-        byebug
         Password.email_reset(@user.email)
-        byebug
         render status: 200, json: {
           message: 'Your request has been received. If we have an email matching that account you will receive link to reset your password.'
         }
