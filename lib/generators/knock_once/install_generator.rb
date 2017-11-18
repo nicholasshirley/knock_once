@@ -4,6 +4,12 @@ module KnockOnce
 
     source_root File.expand_path('../../../templates', __FILE__)
 
+    # Copy initializer into user app
+    def copy_initializer
+      copy_file('create_initializer.rb', 'config/initializers/knock_once.rb')
+    end
+
+    # Copy user information (model & Migrations) into user app
     def create_user_model
       copy_file('user_model.rb', 'app/models/user.rb')
     end
@@ -15,9 +21,6 @@ module KnockOnce
         migration_template('create_knock_once_users.rb.erb', 'db/migrate/create_knock_once_users.rb')
       end
     end
-
-    def copy_initializer
-      copy_file('create_initializer.rb', 'config/initializers/knock_once.rb')
 
     private
 
