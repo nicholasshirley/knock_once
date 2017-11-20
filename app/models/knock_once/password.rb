@@ -8,7 +8,7 @@ module KnockOnce
       email_reset(user.email)
     end
 
-    def generate_reset_token
+    def self.generate_reset_token
       @token = SecureRandom.urlsafe_base64(KnockOnce.configuration.reset_token_length, false)
     end
 
