@@ -12,7 +12,7 @@ module KnockOnce
       @token = SecureRandom.urlsafe_base64(KnockOnce.configuration.reset_token_length, false)
     end
 
-    def save_token_and_expiry(user)
+    def self.save_token_and_expiry(user)
       @user = user
       generate_reset_token
       User.find_by_email(@user['email']).update_attributes(password_reset_token: @token, password_token_expiry: KnockOnce.configuration.password_token_expiry)
