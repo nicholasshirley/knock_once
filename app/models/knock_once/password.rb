@@ -18,7 +18,7 @@ module KnockOnce
       User.find_by_email(@user['email']).update_attributes(password_reset_token: @token, password_token_expiry: KnockOnce.configuration.password_token_expiry)
     end
 
-    def email_reset(email)
+    def self.email_reset(email)
       PasswordResetMailer.password_reset(@user, @token).deliver_now
     end
   end
