@@ -13,14 +13,14 @@ module KnockOnce
 
     # Copy user information (model & Migrations) into user app
     def create_user_model
-      copy_file('user_model.rb', 'app/models/#{user_class}.rb')
+      copy_file('user_model.rb', "app/models/#{user_class}.rb")
     end
 
     def copy_migrations
-      if self.class.migration_exists?('db/migrate', 'create_knock_once_#{user_class.underscore}')
-        say_status('skipped', 'Migration create_knock_once_#{user_class.underscore} already exists')
+      if self.class.migration_exists?('db/migrate', "create_knock_once_#{user_class.underscore}")
+        say_status('skipped', "Migration create_knock_once_#{user_class.underscore} already exists")
       else
-        migration_template('create_knock_once_users.rb.erb', 'db/migrate/create_knock_once_#{user_class.pluralize.underscore}.rb')
+        migration_template('create_knock_once_users.rb.erb', "db/migrate/create_knock_once_#{user_class.pluralize.underscore}.rb")
       end
     end
 
