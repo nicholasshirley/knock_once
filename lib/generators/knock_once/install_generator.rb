@@ -15,7 +15,7 @@ module KnockOnce
     def create_user_model
       fname = "app/models/#{user_class.underscore}.rb"
       unless File.exist?(File.join(destination_root, fname))
-        template("user.rb", fname)
+        template("user_model.rb", fname)
       else
         say_status('skipped', "Model #{user_class.underscore} already exists")
       end
