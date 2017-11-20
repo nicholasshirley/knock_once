@@ -13,7 +13,9 @@ module KnockOnce
 
     # Copy user information (model & Migrations) into user app
     def create_user_model
-      copy_file('user_model.rb', "app/models/#{user_class}.rb")
+      fname = "app/models/#{user_class.underscore}.rb"
+      unless File.exist?(File.join(destination_root, fname))
+        template("user.rb", fname)
     end
 
     def copy_migrations
