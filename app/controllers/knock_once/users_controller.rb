@@ -28,10 +28,14 @@ module KnockOnce
 
     def destroy
       @user = current_user
-      if @user.destroy
-        render json: :success
+      if @user.authenticate(params[:current_password])
+        if @user.destroy
+          render json: :success
+        else
+          render json: @user.errors.full_messages
+        end
       else
-        render json: @user.errors.full_messages
+        render status: :unprocessable_entity, json: ['Current password is incorrect']
       end
     end
 
