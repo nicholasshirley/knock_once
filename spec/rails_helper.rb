@@ -63,6 +63,9 @@ RSpec.configure do |config|
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
 
+  FactoryBot.definition_file_paths << File.join(File.dirname(__FILE__), 'factories')
+  FactoryBot.find_definitions
+
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)

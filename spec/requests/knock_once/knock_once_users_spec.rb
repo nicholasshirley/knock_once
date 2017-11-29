@@ -3,7 +3,7 @@ require 'rails_helper'
 include KnockOnce::Engine.routes.url_helpers
 
 RSpec.describe "Users", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { build(:user) }
   describe "GET /knock_once_users" do
     context 'when the user passes no token' do
       it 'returns 401' do
