@@ -1,7 +1,7 @@
 module KnockOnce
   class Password < ApplicationRecord
 
-    attr_accessor token, user
+    attr_accessor :token, :user
 
     def initialize(user)
       @token = SecureRandom.urlsafe_base64(KnockOnce.configuration.reset_token_length, false)
