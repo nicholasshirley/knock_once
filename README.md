@@ -1,6 +1,6 @@
 # KnockOnce
 knock_once is a user auth gem built on top of [knock](https://github.com/nsarno/knock) to provide a basic JWT user auth system for APIs. The goals of knock_once are twofold:
-* Provide the minimum functionality required to register, authenticate, and reset user passwords. In this sense, minimum means only basic functionality which should apply to the largest number of users.
+* Provide the minimum functionality required to register, authenticate, and reset user passwords. 
 * Provide easy extensibility and customization. Because the first goal is to provide only basic auth, it's expected that all or most users will want to add or modify functionality and development choices in this gem should be made with this in mind.
 
 Though it is not released now, it is planned to have additional functionality available either here or through additional gems (e.g. confirming users, lockable accounts...). The goal here is to provide much of the functionality available in other packages, such as [devise](https://github.com/plataformatec/devise) and [devise_token_auth](https://github.com/lynndylanhurley/devise_token_auth), using JWT.
@@ -90,7 +90,7 @@ Example:
 ```
 
 #### Returning user info in user token
-By default `knock_once` will only return the user's id and email address when user information is encoded in the token (on login, create token ang get user). To overwrite this add the method `to_token_payload` to the `user.rb` model that was created by the generator and define the values you would like to return.
+By default `knock_once` will only return the user's id and email address when user information is encoded in the token (on login, create token and get user). To overwrite this add the method `to_token_payload` to the `user.rb` model that was created by the generator and define the values you would like to return.
 Example:
 
 ```ruby
@@ -174,7 +174,7 @@ To allow the user to reset their password `POST` a valid email to `/auth/passwor
 #### Creating a token
 To create a token simply `POST` to `/auth/passwords/reset` with a valid email address. As a security precaution, the server will return `200` and a non-commital message regardless of whether the email is registered.
 
-Password Reset tokens are good for 1 hour. This will be customizable in the future.
+Password Reset tokens are good for 1 hour by default. This can be customized in the initializer.
 
 #### Updating password with token
 To reset a user password with a valid reset token `PATCH` or `PUT` to `/auth/passwords/reset` with the `token`, a `password` and `password_confirmation`.
@@ -192,7 +192,7 @@ Example:
 If you would like to check if a user token is valid (e.g. you are making them enter a pin or copy a token from an email) you can `POST` to `/auth/passwords/validate` with a `token`. This will return an empty `202` on success and `404` on failure.
 
 ## Current state
-The gem has been extracted from a test project and as such has very little configurability (but it works at least within those parameters). The primary next steps are to add user configuration options, additional documentation, add tests for current functionality and improve the generators.
+The gem has been extracted from a test project and as such has only limited configurability (but it works at least within those parameters). The primary next steps are to add user configuration options, additional documentation, add tests for current functionality and improve the generators.
 
 ## Contributing
 Pull requests are very welcome.
@@ -203,7 +203,7 @@ Current list of items that I would like to add to the gem
 * Initializer that lets user app decide when to require password for on update. Currently the default is for any changes to the user and to change password
 * Initializer + code changes to let users set password recovery method (e.g. token vs pin), length
 * Initializer + code changes to customize what is required on delete (default is a valid token only)
-* Tie forgot password mail template to initializers so they will generate a sufficiently generic template with the correct reset strategy which can easily be edited by users
+* Forgot password mail template that generate based on the choosen strategy (e.g. reset link, email token, pin reset...) and the initializers to suppor this
 * Hook into knock initializer so that users can customize those options from the knock_once initializer file
 
 Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/contributing.md) for specicifics.
