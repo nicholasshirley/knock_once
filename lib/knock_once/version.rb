@@ -1,3 +1,3 @@
 module KnockOnce
-  VERSION = '0.2.085'
+  VERSION = '0.2.086'
 end

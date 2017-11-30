@@ -13,7 +13,7 @@ module KnockOnce
         .update_attributes(password_reset_token: @token, password_token_expiry: KnockOnce.configuration.password_token_expiry)
     end
 
-    def email_reset
+    def self.email_reset
       PasswordResetMailer.password_reset(@user, @token).deliver_now
     end
   end
