@@ -10,7 +10,10 @@ module KnockOnce
       # if valid user
       if @user
         # generate a new token and save
-        Password.reset_password(@user)
+        Password.new(@user)
+          .save_token_and_expiry
+          .email_reset
+
         render status: 200, json: {
           message: 'Your request has been received. If we have an email matching that account you will receive link to reset your password.'
         }
