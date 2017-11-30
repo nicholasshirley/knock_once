@@ -28,13 +28,10 @@ Mount the gem in our `routes.rb` file:
 mount KnockOnce::Engine, at: '/auth' # Can mount at whatever path you like
 ```
 
-Then run generators
+Then run generators and include the name for your user model
 ```
-rails g knock_once:install
+rails g knock_once:install [User]
 ```
-
-## Assumptions
-knock_once requires that you have a model called user (see generator output). In the future, this will be made configurable, but at the moment it's the only possibility.
 
 ## Setting up
 After you run the install generator, you will have a user model, user migration and an initialization file. You only need to run `rails db:migrate`  to get started, but realistically your user model will have more information than just an email. Add your additional user fields to the migration (and any validations etc you need for them on the model) and then whitelist the required user params in the initializer.
@@ -147,9 +144,14 @@ Example:
 *Note:* To change a user password, see the passwords section below.
 
 #### Deleting a user
-To delete a user `DELETE` to `/auth/users` with a valid token.
+To delete a user `DELETE` to `/auth/users` with a valid token and the current password.
 
-In the future it is planned to offer additional options (such as requiring a correct password) before deletion.
+Example:
+```
+{
+  "current_password": "password",
+}
+```
 
 ### Passwords
 Password changes and the forgot password flow are handled by the passwords controller. The passwords controller, like the users controller, enforces that a current password is passed to update. This behavior will be customizable in the future.
@@ -197,15 +199,14 @@ Pull requests are very welcome.
 
 Current list of items that I would like to add to the gem
 
-* Tests! There are currently 0 tests. It's bad, I know. Please don't report me to the testing police.
-* Test documentation and tear down/init generator so that anyone doing testing is working with the same dummy app data and that data mirrors what is produced by the install generators.
-* Ability to change user model to any name
+* Tests! The current test suite needs work. Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/contributing.md) for the current test strategy.
 * Initializer that lets user app decide when to require password for on update. Currently the default is for any changes to the user and to change password
-* Initializer + code changes to let users set password recovery method (e.g. token vs pin), length and expiry
-* Initializer + code changes to customize password reset token validity period (default is 1 hour)
+* Initializer + code changes to let users set password recovery method (e.g. token vs pin), length
 * Initializer + code changes to customize what is required on delete (default is a valid token only)
 * Tie forgot password mail template to initializers so they will generate a sufficiently generic template with the correct reset strategy which can easily be edited by users
 * Hook into knock initializer so that users can customize those options from the knock_once initializer file
+
+Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/contributing.md) for specicifics.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
