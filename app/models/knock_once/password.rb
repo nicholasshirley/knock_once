@@ -1,19 +1,19 @@
 module KnockOnce
-  class Password < ApplicationRecord
-    attr_accessor :token
-    attr_accessor :user
+  class Password
 
-    def self.generate_reset_token
-      @token = SecureRandom.urlsafe_base64(18, false)
-    end
+    attr_accessor :token, :user
 
-    def self.save_token_and_expiry(user)
+    def initialize(user)
+      @token = SecureRandom.urlsafe_base64(KnockOnce.configuration.reset_token_length, false)
       @user = user
-      generate_reset_token
-      User.find_by_email(@user['email']).update_attributes(password_reset_token: @token, password_token_expiry: 1.hour.from_now)
     end
 
-    def self.email_reset(email)
+    def save_token_and_expiry
+      User.find_by_email(@user['email'])
+        .update_attributes(password_reset_token: @token, password_token_expiry: KnockOnce.configuration.password_token_expiry)
+    end
+
+    def email_reset
       PasswordResetMailer.password_reset(@user, @token).deliver_now
     end
   end

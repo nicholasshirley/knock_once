@@ -1,4 +1,4 @@
-require_dependency "knock_once/application_controller"
+require_dependency 'knock_once/application_controller'
 
 module KnockOnce
   class UsersController < ApplicationController
@@ -11,7 +11,7 @@ module KnockOnce
     end
 
     def update
-      @user = current_user
+      @user = User.find_by_id(current_user.id)
       if @user.authenticate(params[:current_password])
         if @user.update(user_params)
           render json: {
@@ -28,10 +28,14 @@ module KnockOnce
 
     def destroy
       @user = current_user
-      if @user.destroy
-        render json: :success
+      if @user.authenticate(params[:current_password])
+        if @user.destroy
+          render json: :success
+        else
+          render json: @user.errors.full_messages
+        end
       else
-        render json: @user.errors.full_messages
+        render status: :unprocessable_entity, json: ['Current password is incorrect']
       end
     end
 
@@ -47,7 +51,7 @@ module KnockOnce
     private
 
     def user_params
-      params.permit(:user, :user_name, :email, :current_password, :password, :password_confirmation)
+      params.permit(KnockOnce.configuration.user_params)
     end
   end
 end

@@ -1,6 +1,6 @@
-class CreateKnockOnce<%= user_class.pluralize %> < ActiveRecord::Migration<%= "[#{Rails::VERSION::STRING[0..2]}]" if Rails::VERSION::MAJOR > 4 %>
+class CreateKnockOnceUsers < ActiveRecord::Migration[5.1]
   def change
-    create_table :<%= user_class.pluralize %> do |t|
+    create_table :users do |t|
       # Required
       t.string :email
       t.string :password_digest
@@ -13,6 +13,6 @@ class CreateKnockOnce<%= user_class.pluralize %> < ActiveRecord::Migration<%= "[
       t.timestamps
     end
 
-    add_index <%= user_class.pluralize %>, :email, unique: true
+    add_index :users, :email, unique: true
   end
 end
