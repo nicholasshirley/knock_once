@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+include Helpers
 include KnockOnce::Engine.routes.url_helpers
 
 RSpec.describe "Users", type: :request do
@@ -7,13 +8,6 @@ RSpec.describe "Users", type: :request do
   # basically though the emails are "test#{n}@test.com"
   # and the passwords are "password#{n}""
   let(:user) { create(:user) }
-  # Define headers for valid requests
-  def authenticated_header
-    token = Knock::AuthToken.new(payload: { sub: user.id }).token
-    {
-      'Authorization': "Bearer #{token}"
-    }
-  end
 
   # GET
   describe 'GET /auth/users' do
@@ -26,7 +20,7 @@ RSpec.describe "Users", type: :request do
 
     context ' when the user passes an invalid token' do
       it 'returns 401' do
-        get users_path, headers: { 'Authorization': 'Bearer AABBCC' }
+        get users_path, headers: bad_header
         expect(response).to have_http_status(401)
       end
     end
@@ -50,32 +44,35 @@ RSpec.describe "Users", type: :request do
     end
 
     # Send with invalid token
-    context 'when the user passes an invalid token and correct password' do
-      it 'returns 401' do
-        patch users_path, params: { email: 'newtest@test.com', current_password: user.password }, headers: { 'Authorization': "Bearer AABBCC" }
-        expect(response).to have_http_status(401)
+    context 'when the user passes an invalid token' do
+      context 'and correct password' do
+        it 'returns 401' do
+          patch users_path, params: correct_password, headers: bad_header
+          expect(response).to have_http_status(401)
+        end
+      end
+
+      context 'and incorrect password' do
+        it 'returns 401' do
+          patch users_path, params: incorrect_password, headers: bad_header
+          expect(response).to have_http_status(401)
+        end
       end
     end
 
-    context 'when the user passes an invalid token and incorrect password' do
-      it 'returns 401' do
-        patch users_path, params: { email: 'newtest@test.com', current_password: 'RandomPassword' }, headers: { 'Authorization': "Bearer AABBCC" }
-        expect(response).to have_http_status(401)
-      end
-    end
+    context 'when the user passes a valid token' do
+      context 'and correct password' do
+        it 'return 200' do
+          patch users_path, params: { email: 'newtest@test.com', current_password: user.password }, headers: authenticated_header
+          expect(response).to have_http_status(200)
+        end
 
-    # Send with valid token
-    context 'when the user passes a valid token and correct password' do
-      it 'return 200' do
-        patch users_path, params: { email: 'newtest@test.com', current_password: user.password }, headers: authenticated_header
-        expect(response).to have_http_status(200)
-      end
-    end
-
-    context 'when the user passes an valid token and incorrect password' do
-      it 'returns 422' do
-        patch users_path, params: { email: 'newtest@test.com', current_password: 'RandomPassword' }, headers: authenticated_header
-        expect(response).to have_http_status(422)
+        context 'and incorrect password' do
+          it 'returns 422' do
+            patch users_path, params: { email: 'newtest@test.com', current_password: 'RandomPassword' }, headers: authenticated_header
+            expect(response).to have_http_status(422)
+          end
+        end
       end
     end
   end
@@ -92,32 +89,36 @@ RSpec.describe "Users", type: :request do
     end
 
     # Send with invalid token
-    context 'when the user passes an invalid token and correct password' do
-      it 'return 401' do
-        delete users_path, params: { current_password: user.password }, headers: { 'Authorization': 'Bearer AABBCC' }
-        expect(response).to have_http_status(401)
+    context 'when the user passes an invalid token' do
+      context 'and correct password' do
+        it 'return 401' do
+          delete users_path, params: { current_password: user.password }, headers: { 'Authorization': 'Bearer AABBCC' }
+          expect(response).to have_http_status(401)
+        end
       end
-    end
 
-    context 'when the user passes an invalid token and incorrect password' do
-      it 'returns 401' do
-        delete users_path, params: { current_password: 'RandomPassword' }, headers: { 'Authorization': 'Bearer AABBCC' }
-        expect(response).to have_http_status(401)
+      context 'and incorrect password' do
+        it 'returns 401' do
+          delete users_path, params: { current_password: 'RandomPassword' }, headers: { 'Authorization': 'Bearer AABBCC' }
+          expect(response).to have_http_status(401)
+        end
       end
     end
 
     # Send with valid token
-    context 'when the user passes a valid token and correct password' do
-      it 'returns 200' do
-        delete users_path, params: { current_password: user.password }, headers: authenticated_header
-        expect(response).to have_http_status(200)
+    context 'when the user passes a valid token' do
+      context 'and correct password' do
+        it 'returns 200' do
+          delete users_path, params: { current_password: user.password }, headers: authenticated_header
+          expect(response).to have_http_status(200)
+        end
       end
-    end
 
-    context 'when the user passes an valid token and incorrect password' do
-      it 'return 422' do
-        delete users_path, params: { current_password: 'RandomPassword' }, headers: authenticated_header
-        expect(response).to have_http_status(422)
+      context 'and incorrect password' do
+        it 'return 422' do
+          delete users_path, params: { current_password: 'RandomPassword' }, headers: authenticated_header
+          expect(response).to have_http_status(422)
+        end
       end
     end
   end
