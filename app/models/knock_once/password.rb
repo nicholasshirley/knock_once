@@ -1,5 +1,5 @@
 module KnockOnce
-  class Password < ApplicationRecord
+  class Password
 
     attr_accessor :token, :user
 
