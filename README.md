@@ -129,7 +129,7 @@ end
 ```
 
 #### Updating a user
-To update a user attribute(s), `PATCH` or `PUT` to `/auth/users` with a valid token, the `current_password` and the updated attributes.
+To update a user attribute(s), `PATCH` or `PUT` to `/auth/users` with a valid token, the `current_password` and the updated attributes. By default, `current_password` is required for all changes to a user, to override this, see the notes in the initializer.
 
 Example:
 ```
@@ -201,8 +201,7 @@ Current list of items that I would like to add to the gem
 
 * Tests! The current test suite needs work. Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/blob/master/CONTRIBUTING.md) for the current test strategy.
 * Initializer + code changes to let users set password recovery method (e.g. token vs pin), length
-* Initializer + code changes to customize what is required on delete (default is a valid token only)
-* Forgot password mail template that generate based on the choosen strategy (e.g. reset link, email token, pin reset...) and the initializers to suppor this
+* Forgot password mail template that generate based on the choosen strategy (e.g. reset link, email token, pin reset...) and the initializers to support this
 * Hook into knock initializer so that users can customize those options from the knock_once initializer file
 
 Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/blob/master/CONTRIBUTING.md) for specicifics.
