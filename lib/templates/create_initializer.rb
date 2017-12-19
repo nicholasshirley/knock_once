@@ -17,4 +17,11 @@ KnockOnce.configure do |config|
   # By default the reset token length is 18
   # config.reset_token_length = 18
 
+  # Require password for updates
+  # By default a current password is required for all udpates to the user
+  # and to change their password.
+  # To enforce current password only on password changes use :password
+  # Any other value, e.g. :none, :clowns, :dhh, will allow allow all changes without current password
+  # config.require_password_to_change = :all
+
 end

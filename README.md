@@ -154,7 +154,7 @@ Example:
 ```
 
 ### Passwords
-Password changes and the forgot password flow are handled by the passwords controller. The passwords controller, like the users controller, enforces that a current password is passed to update. This behavior will be customizable in the future.
+Password changes and the forgot password flow are handled by the passwords controller. The passwords controller, like the users controller, enforces that a current password is passed to update. To override this behavior, see the notes in the the initializer.
 
 #### Updating a user password (when the user knows their current password)
 To update a user password `PATCH` or `PUT` to `/auth/passwords` with a valid authorization token, the `current_password`, the desired new `password` and a matching `password_confirmation`.
@@ -200,7 +200,6 @@ Pull requests are very welcome.
 Current list of items that I would like to add to the gem
 
 * Tests! The current test suite needs work. Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/blob/master/CONTRIBUTING.md) for the current test strategy.
-* Initializer that lets user app decide when to require password for on update. Currently the default is for any changes to the user and to change password
 * Initializer + code changes to let users set password recovery method (e.g. token vs pin), length
 * Initializer + code changes to customize what is required on delete (default is a valid token only)
 * Forgot password mail template that generate based on the choosen strategy (e.g. reset link, email token, pin reset...) and the initializers to suppor this
