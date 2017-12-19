@@ -1,5 +1,5 @@
 # How to contribute to knock_once
-Thank you for considering a contribution to knock_once! This gem is still very young and needs a lot of things. Below you will find a few guides. Please do also make sure that your interactions on this project follow the [code of conduct](https://github.com/nicholasshirley/knock_once/code_of_conduct.md).
+Thank you for considering a contribution to knock_once! This gem is still very young and needs a lot of things. Below you will find a few guides. Please do also make sure that your interactions on this project follow the [code of conduct](https://github.com/nicholasshirley/knock_once/blob/master/CODE_OF_CONDUCT.md).
 
 # Test coverage
 Currently test coverage is weak. If you have experience testing engines using RSpec, your contribution in this area would be very much appreciated! The current strategy is to use the dummy app to mirror a fresh install of an app with knoc_once included, however, I'm open to changing this if there is a better way to test. If you have input in this area, please open an issue so we can discuss.
