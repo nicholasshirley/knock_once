@@ -199,14 +199,14 @@ Pull requests are very welcome.
 
 Current list of items that I would like to add to the gem
 
-* Tests! The current test suite needs work. Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/contributing.md) for the current test strategy.
+* Tests! The current test suite needs work. Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/blob/master/CONTRIBUTING.md) for the current test strategy.
 * Initializer that lets user app decide when to require password for on update. Currently the default is for any changes to the user and to change password
 * Initializer + code changes to let users set password recovery method (e.g. token vs pin), length
 * Initializer + code changes to customize what is required on delete (default is a valid token only)
 * Forgot password mail template that generate based on the choosen strategy (e.g. reset link, email token, pin reset...) and the initializers to suppor this
 * Hook into knock initializer so that users can customize those options from the knock_once initializer file
 
-Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/contributing.md) for specicifics.
+Please see [CONTRIBUTING](https://github.com/nicholasshirley/knock_once/blob/master/CONTRIBUTING.md) for specicifics.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
