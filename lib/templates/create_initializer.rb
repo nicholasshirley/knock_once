@@ -19,10 +19,11 @@ KnockOnce.configure do |config|
 
   # REQUIRE PASSWORD FOR UPDATES
 
-  # By default a current password is required for all udpates to the user
-  # and to allow them to change their password.
-  # To enforce current password only on password changes use :password
-  # Any other value, e.g. :none, :clowns, :dhh, will allow allow all changes without current password
+  # The three states supported for requiring passoword changes are:
+  #   :all (requires current_password for password and user changes)
+  #   :password (only requires current_password for password changes)
+  #   :none or any other value (doesn't require current_password for any changes)
+  # :all is set by default
   # config.require_password_to_change = :all
 
 end
