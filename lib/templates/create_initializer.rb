@@ -17,4 +17,13 @@ KnockOnce.configure do |config|
   # By default the reset token length is 18
   # config.reset_token_length = 18
 
+  # REQUIRE PASSWORD FOR UPDATES
+
+  # The three states supported for requiring passoword changes are:
+  #   :all (requires current_password for password and user changes)
+  #   :password (only requires current_password for password changes)
+  #   :none or any other value (doesn't require current_password for any changes)
+  # :all is set by default
+  # config.require_password_to_change = :all
+
 end

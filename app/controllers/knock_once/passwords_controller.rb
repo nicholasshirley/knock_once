@@ -54,17 +54,12 @@ module KnockOnce
 
     def update
       @user = current_user
-      if @user.authenticate(params[:current_password])
-        if @user.update(password_params)
-          render json: {
-            user: @user,
-            message: 'Your password has been udpated!'
-          }
-        else
-          render json: @user.errors.full_messages, status: :unprocessable_entity
-        end
+
+      case KnockOnce.configuration.require_password_to_change
+      when :all, :password
+        password_required_change
       else
-        render status: :unprocessable_entity, json: ['Current password is incorrect']
+        save_or_return_error
       end
     end
 
@@ -72,6 +67,25 @@ module KnockOnce
 
     def password_params
       params.permit(:password, :password_confirmation, :current_password, :email, :token)
+    end
+
+    def password_required_change
+      if @user.authenticate(params[:current_password])
+        save_or_return_error
+      else
+        render status: :unprocessable_entity, json: ['Current password is incorrect']
+      end
+    end
+
+    def save_or_return_error
+      if @user.update(password_params)
+        render json: {
+          user: @user,
+          message: 'Your password has been udpated!'
+        }
+      else
+        render json: @user.errors.full_messages, status: :unprocessable_entity
+      end
     end
   end
 end
