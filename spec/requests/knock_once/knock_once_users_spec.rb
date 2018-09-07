@@ -133,8 +133,13 @@ RSpec.describe "Users", type: :request do
     end
 
     context 'whent the body is invalid' do
-      it 'return 422' do
-        post users_path, params: { clowns: 'bozo', password: 'password', password_confirmation: 'notPassword' }
+      it 'rejects mismatched passwords' do
+        post users_path, params: { email: 'bozo@example.com', password: 'password', password_confirmation: 'notPassword' }
+        expect(response).to have_http_status(422)
+      end
+
+      it 'rejects missing password confirmations' do
+        post users_path, params: { email: 'bozo@example.com', password: 'password' }
         expect(response).to have_http_status(422)
       end
     end
